@@ -6,16 +6,19 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="@dimen/margin_normal"
-        android:src="@drawable/ic_person"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black"
+        android:layout_margin="@dimen/margin_normal"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_person"
+        android:background="@color/white"
+        app:strokeColor="@color/black"
+        app:shapeAppearanceOverlay="@style/corner_radius_large"
         tools:ignore="ContentDescription" />
 
     <TextView

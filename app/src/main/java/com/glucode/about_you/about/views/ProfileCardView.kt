@@ -32,9 +32,6 @@ class ProfileCardView @JvmOverloads constructor(
     private fun handleImage(engineer: Engineer?) {
         if (engineer?.defaultImageName != null && engineer.defaultImageName.isNotEmpty()) {
             binding.profileImage.setImageURI(Uri.parse(engineer.defaultImageName))
-
-        } else {
-            binding.profileImage.setColorFilter(ContextCompat.getColor(context, R.color.black))
         }
     }
 
