@@ -17,13 +17,12 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginEnd="@dimen/margin_normal"
-            android:contentDescription="@string/profile_image_description"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_person"
             android:background="@color/white"
             app:strokeColor="@color/black"
-            app:strokeWidth="2dp"
-            app:shapeAppearanceOverlay="@style/corner_radius_large" />
+            app:shapeAppearanceOverlay="@style/corner_radius_large"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:id="@+id/content_container"
