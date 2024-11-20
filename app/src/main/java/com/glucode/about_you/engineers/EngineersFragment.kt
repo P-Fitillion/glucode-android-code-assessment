@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.glucode.about_you.R
+import com.glucode.about_you.data.EngineersRepository
 import com.glucode.about_you.databinding.FragmentEngineersBinding
 import com.glucode.about_you.engineers.models.Engineer
 import com.glucode.about_you.mockdata.MockData
@@ -20,7 +21,7 @@ class EngineersFragment : Fragment() {
     ): View {
         binding = FragmentEngineersBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
-        setUpEngineersList(MockData.engineers)
+        setUpEngineersList(EngineersRepository.engineers)
         return binding.root
     }
 

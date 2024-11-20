@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.glucode.about_you.about.views.ProfileCardView
 import com.glucode.about_you.about.views.QuestionCardView
+import com.glucode.about_you.data.EngineersRepository
 import com.glucode.about_you.databinding.FragmentAboutBinding
 import com.glucode.about_you.engineers.models.Engineer
-import com.glucode.about_you.mockdata.MockData
 
 class AboutFragment : Fragment() {
     private lateinit var binding: FragmentAboutBinding
@@ -31,7 +31,7 @@ class AboutFragment : Fragment() {
 
     private fun setUpContent() {
         val engineerName = arguments?.getString("name")
-        val engineer = MockData.engineers.first { it.name == engineerName }
+        val engineer = EngineersRepository.engineers.first { it.name == engineerName }
 
         setUpProfileHeader(engineer)
         setUpQuestions(engineer)
