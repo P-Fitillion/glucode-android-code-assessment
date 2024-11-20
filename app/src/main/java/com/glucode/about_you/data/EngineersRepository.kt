@@ -10,4 +10,9 @@ object EngineersRepository {
         _engineers.clear()
         _engineers.addAll(initialEngineers)
     }
+
+    fun updateEngineerImageName(engineerName: String, imageName: String) {
+        val engineer = _engineers.find { it.name == engineerName }
+        engineer?.defaultImageName = imageName
+    }
 }
