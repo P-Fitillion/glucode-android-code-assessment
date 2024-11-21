@@ -41,17 +41,20 @@ class EngineersFragment : Fragment() {
 
         sortingCriterion?.let {
             EngineersDataService.sortByQuickStatAsc(it)
-            setUpEngineersList(EngineersDataService.engineers)
+            renderEngineersList(EngineersDataService.engineers)
             return true
         }
-        setUpEngineersList(EngineersDataService.engineers)
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setUpEngineersList(engineers: List<Engineer>) {
+    private fun renderEngineersList(engineers: List<Engineer>) {
         binding.list.adapter = EngineersRecyclerViewAdapter(engineers) {
             goToAbout(it)
         }
+    }
+
+    private fun setUpEngineersList(engineers: List<Engineer>) {
+        renderEngineersList(engineers)
         val dividerItemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         binding.list.addItemDecoration(dividerItemDecoration)
     }
