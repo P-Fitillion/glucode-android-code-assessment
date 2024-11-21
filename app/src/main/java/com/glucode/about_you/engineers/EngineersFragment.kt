@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.glucode.about_you.R
 import com.glucode.about_you.data.EngineersDataService
+import com.glucode.about_you.data.SortingCriterion
 import com.glucode.about_you.databinding.FragmentEngineersBinding
 import com.glucode.about_you.engineers.models.Engineer
 import com.glucode.about_you.engineers.models.QuickStats
@@ -31,14 +32,14 @@ class EngineersFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val sortAction: ((QuickStats) -> Int)? = when (item.itemId) {
-            R.id.action_years -> { it -> it.years }
-            R.id.action_coffees -> { it -> it.coffees }
-            R.id.action_bugs -> { it -> it.bugs }
+        val sortingCriterion: SortingCriterion? = when (item.itemId) {
+            R.id.action_years -> SortingCriterion.YEARS
+            R.id.action_coffees -> SortingCriterion.COFFEES
+            R.id.action_bugs -> SortingCriterion.BUGS
             else -> null
         }
 
-        sortAction?.let {
+        sortingCriterion?.let {
             EngineersDataService.sortByQuickStatAsc(it)
             setUpEngineersList(EngineersDataService.engineers)
             return true
