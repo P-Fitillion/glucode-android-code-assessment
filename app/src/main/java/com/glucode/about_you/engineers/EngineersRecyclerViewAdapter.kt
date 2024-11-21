@@ -42,17 +42,19 @@ class EngineersRecyclerViewAdapter(
 
         fun getStatsText(engineer: Engineer): String {
             val currentCriterion = EngineersDataService.currentSortingCriterion
-            if (currentCriterion != null) {
-                return currentCriterion.let { criterion ->
-                    when (currentCriterion) {
-                        SortingCriterion.YEARS.name -> "Years: ${engineer.quickStats.years}"
-                        SortingCriterion.COFFEES.name -> "Coffees: ${engineer.quickStats.coffees}"
-                        SortingCriterion.BUGS.name -> "Bugs: ${engineer.quickStats.bugs}"
-                        else -> {"Invalid state"}
-                    }.toString()
-                }
+            if (currentCriterion == null) {
+                return ""
             }
-            return ""
+            return currentCriterion.let { criterion ->
+                when (currentCriterion) {
+                    SortingCriterion.YEARS.name -> "Years: ${engineer.quickStats.years}"
+                    SortingCriterion.COFFEES.name -> "Coffees: ${engineer.quickStats.coffees}"
+                    SortingCriterion.BUGS.name -> "Bugs: ${engineer.quickStats.bugs}"
+                    else -> {
+                        "Invalid state"
+                    }
+                }.toString()
+            }
         }
     }
 }
