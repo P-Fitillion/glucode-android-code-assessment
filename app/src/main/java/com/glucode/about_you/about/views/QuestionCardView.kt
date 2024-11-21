@@ -18,6 +18,8 @@ class QuestionCardView @JvmOverloads constructor(
     private val binding: ViewQuestionCardBinding =
         ViewQuestionCardBinding.inflate(LayoutInflater.from(context), this)
 
+    var newAnswerSelected: ((String) -> Unit)? = null
+
     var title: String? = null
         set(value) {
             field = value
@@ -49,20 +51,21 @@ class QuestionCardView @JvmOverloads constructor(
     private fun addAnswer(title: String) {
         val answerView = AnswerCardView(context)
         answerView.title = title
-        answerView.setOnClickListener { onAnswerClick(it) }
+        answerView.setOnClickListener { onAnswerClick(it, title) }
         binding.answers.addView(answerView)
     }
 
-    private fun onAnswerClick(view: View) {
+    private fun onAnswerClick(view: View, title: String) {
         if (!view.isSelected) {
             binding.answers.children.filter { it.isSelected }.forEach {
                 it.isSelected = false
             }
-            setSelection(view)
+            setSelection(view, title)
         }
     }
 
-    private fun setSelection(view: View) {
+    private fun setSelection(view: View, title: String) {
         this.selection = binding.answers.children.indexOf(view)
+        this.newAnswerSelected?.invoke(title)
     }
 }

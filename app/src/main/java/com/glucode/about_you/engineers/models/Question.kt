@@ -4,7 +4,7 @@ abstract class Question(
     val questionText: String,
     val answerOptions: List<String>,
     val questionType: String,//TODO - Is this still necessary?
-    val answer: Answer
+    var answer: Answer
 ) {
     class One(answer: Answer): Question(
         questionText = "When do you have the most energy?",

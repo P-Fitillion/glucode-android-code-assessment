@@ -69,6 +69,13 @@ class AboutFragment : Fragment() {
             questionView.title = question.questionText
             questionView.answers = question.answerOptions
             questionView.selection = question.answer.index
+            questionView.newAnswerSelected = { newAnswerText: String ->
+                EngineersDataService.updateEngineerAnswer(
+                    engineer.name,
+                    question.questionText,
+                    newAnswerText
+                )
+            }
 
             binding.container.addView(questionView)
         }
