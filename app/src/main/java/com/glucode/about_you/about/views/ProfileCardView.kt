@@ -5,7 +5,6 @@ import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import com.glucode.about_you.R
 import com.glucode.about_you.databinding.ViewProfileCardBinding
 import com.glucode.about_you.engineers.models.Engineer
