@@ -31,10 +31,25 @@ class EngineersFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_years) {
-            return true
+        when (item.itemId) {
+            R.id.action_years -> {
+                updateAfterEngineersListSorted(EngineersRepository.byQuickStatAsc { it.years })
+                return true
+            }
+            R.id.action_coffees -> {
+                updateAfterEngineersListSorted(EngineersRepository.byQuickStatAsc { it.coffees })
+                return true
+            }
+            R.id.action_bugs -> {
+                updateAfterEngineersListSorted(EngineersRepository.byQuickStatAsc { it.bugs })
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun updateAfterEngineersListSorted(engineers: List<Engineer>) {
+        setUpEngineersList(engineers)
     }
 
     private fun setUpEngineersList(engineers: List<Engineer>) {
