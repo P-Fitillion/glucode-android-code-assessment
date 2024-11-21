@@ -5,11 +5,11 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 
-import com.glucode.about_you.data.EngineersRepository
+import com.glucode.about_you.data.EngineersDataService
 import com.glucode.about_you.engineers.models.Engineer
 import com.glucode.about_you.engineers.models.QuickStats
 
-class EngineersRepositoryTest {
+class EngineersDataServiceTest {
 
     @Before
     fun setUp() {
@@ -36,35 +36,35 @@ class EngineersRepositoryTest {
                 questions = emptyList()
             )
         )
-        EngineersRepository.init(initialEngineers)
+        EngineersDataService.init(initialEngineers)
     }
 
     @Test
     fun `sortByQuickStatAsc sorts by years ascending`() {
-        EngineersRepository.sortByQuickStatAsc { it.years }
+        EngineersDataService.sortByQuickStatAsc { it.years }
 
         val expectedOrder = listOf("Bob", "Alice", "Charlie")
-        val actualOrder = EngineersRepository.engineers.map { it.name }
+        val actualOrder = EngineersDataService.engineers.map { it.name }
 
         assertEquals(expectedOrder, actualOrder)
     }
 
     @Test
     fun `sortByQuickStatAsc sorts by coffees ascending`() {
-        EngineersRepository.sortByQuickStatAsc { it.coffees }
+        EngineersDataService.sortByQuickStatAsc { it.coffees }
 
         val expectedOrder = listOf("Alice", "Charlie", "Bob")
-        val actualOrder = EngineersRepository.engineers.map { it.name }
+        val actualOrder = EngineersDataService.engineers.map { it.name }
 
         assertEquals(expectedOrder, actualOrder)
     }
 
     @Test
     fun `sortByQuickStatAsc sorts by bugs ascending`() {
-        EngineersRepository.sortByQuickStatAsc { it.bugs }
+        EngineersDataService.sortByQuickStatAsc { it.bugs }
 
         val expectedOrder = listOf("Charlie", "Bob", "Alice")
-        val actualOrder = EngineersRepository.engineers.map { it.name }
+        val actualOrder = EngineersDataService.engineers.map { it.name }
 
         assertEquals(expectedOrder, actualOrder)
     }
@@ -72,8 +72,8 @@ class EngineersRepositoryTest {
     @Test
     fun `byQuickStatAsc does not change the original data`() {
         val expectedOrder = listOf("Alice", "Bob", "Charlie");
-        EngineersRepository.sortByQuickStatAsc { it.bugs }
-        val actualOrder = EngineersRepository.unsortedEngineers.map { it.name }
+        EngineersDataService.sortByQuickStatAsc { it.bugs }
+        val actualOrder = EngineersDataService.unsortedEngineers.map { it.name }
         assertEquals(expectedOrder, actualOrder)
     }
 }

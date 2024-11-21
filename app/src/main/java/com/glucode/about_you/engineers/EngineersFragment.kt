@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.glucode.about_you.R
-import com.glucode.about_you.data.EngineersRepository
+import com.glucode.about_you.data.EngineersDataService
 import com.glucode.about_you.databinding.FragmentEngineersBinding
 import com.glucode.about_you.engineers.models.Engineer
 import com.glucode.about_you.engineers.models.QuickStats
@@ -21,7 +21,7 @@ class EngineersFragment : Fragment() {
     ): View {
         binding = FragmentEngineersBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
-        setUpEngineersList(EngineersRepository.engineers)
+        setUpEngineersList(EngineersDataService.engineers)
         return binding.root
     }
 
@@ -39,11 +39,11 @@ class EngineersFragment : Fragment() {
         }
 
         sortAction?.let {
-            EngineersRepository.sortByQuickStatAsc(it)
-            setUpEngineersList(EngineersRepository.engineers)
+            EngineersDataService.sortByQuickStatAsc(it)
+            setUpEngineersList(EngineersDataService.engineers)
             return true
         }
-        setUpEngineersList(EngineersRepository.engineers)
+        setUpEngineersList(EngineersDataService.engineers)
         return super.onOptionsItemSelected(item)
     }
 

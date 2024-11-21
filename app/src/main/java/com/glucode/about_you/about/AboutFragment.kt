@@ -12,7 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.glucode.about_you.about.views.ProfileCardView
 import com.glucode.about_you.about.views.QuestionCardView
-import com.glucode.about_you.data.EngineersRepository
+import com.glucode.about_you.data.EngineersDataService
 import com.glucode.about_you.databinding.FragmentAboutBinding
 import com.glucode.about_you.engineers.models.Engineer
 
@@ -24,7 +24,7 @@ class AboutFragment : Fragment() {
             binding.container.removeAllViews()
             val selectedImageUri: Uri? = result.data?.data
             val engineerName = arguments?.getString("name")
-            EngineersRepository.updateEngineerImageName(engineerName.toString(), selectedImageUri.toString())
+            EngineersDataService.updateEngineerImageName(engineerName.toString(), selectedImageUri.toString())
             setUpContent()
         }
     }
@@ -46,7 +46,7 @@ class AboutFragment : Fragment() {
 
     private fun setUpContent() {
         val engineerName = arguments?.getString("name")
-        val engineer = EngineersRepository.engineers.first { it.name == engineerName }
+        val engineer = EngineersDataService.engineers.first { it.name == engineerName }
 
         setUpProfileHeader(engineer)
         setUpQuestions(engineer)
