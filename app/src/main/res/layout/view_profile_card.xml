@@ -20,6 +20,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_person"
             android:background="@color/white"
+            android:foreground="?attr/selectableItemBackground"
             app:strokeColor="@color/black"
             app:shapeAppearanceOverlay="@style/corner_radius_large"
             tools:ignore="ContentDescription" />
