@@ -33,23 +33,18 @@ class EngineersFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_years -> {
-                updateAfterEngineersListSorted(EngineersRepository.byQuickStatAsc { it.years })
-                return true
+                EngineersRepository.sortByQuickStatAsc { it.years }
             }
             R.id.action_coffees -> {
-                updateAfterEngineersListSorted(EngineersRepository.byQuickStatAsc { it.coffees })
+                EngineersRepository.sortByQuickStatAsc { it.coffees }
                 return true
             }
             R.id.action_bugs -> {
-                updateAfterEngineersListSorted(EngineersRepository.byQuickStatAsc { it.bugs })
-                return true
+                EngineersRepository.sortByQuickStatAsc { it.bugs }
             }
         }
+        setUpEngineersList(EngineersRepository.engineers)
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun updateAfterEngineersListSorted(engineers: List<Engineer>) {
-        setUpEngineersList(engineers)
     }
 
     private fun setUpEngineersList(engineers: List<Engineer>) {

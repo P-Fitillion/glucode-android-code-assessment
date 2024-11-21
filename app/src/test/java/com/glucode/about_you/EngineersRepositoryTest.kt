@@ -40,40 +40,40 @@ class EngineersRepositoryTest {
     }
 
     @Test
-    fun `byQuickStatAsc sorts by years ascending`() {
-        val sortedByYears = EngineersRepository.byQuickStatAsc { it.years }
+    fun `sortByQuickStatAsc sorts by years ascending`() {
+        EngineersRepository.sortByQuickStatAsc { it.years }
 
         val expectedOrder = listOf("Bob", "Alice", "Charlie")
-        val actualOrder = sortedByYears.map { it.name }
+        val actualOrder = EngineersRepository.engineers.map { it.name }
 
         assertEquals(expectedOrder, actualOrder)
     }
 
     @Test
-    fun `byQuickStatAsc sorts by coffees ascending`() {
-        val sortedByCoffees = EngineersRepository.byQuickStatAsc { it.coffees }
+    fun `sortByQuickStatAsc sorts by coffees ascending`() {
+        EngineersRepository.sortByQuickStatAsc { it.coffees }
 
         val expectedOrder = listOf("Alice", "Charlie", "Bob")
-        val actualOrder = sortedByCoffees.map { it.name }
+        val actualOrder = EngineersRepository.engineers.map { it.name }
 
         assertEquals(expectedOrder, actualOrder)
     }
 
     @Test
-    fun `byQuickStatAsc sorts by bugs ascending`() {
-        val sortedByBugs = EngineersRepository.byQuickStatAsc { it.bugs }
+    fun `sortByQuickStatAsc sorts by bugs ascending`() {
+        EngineersRepository.sortByQuickStatAsc { it.bugs }
 
         val expectedOrder = listOf("Charlie", "Bob", "Alice")
-        val actualOrder = sortedByBugs.map { it.name }
+        val actualOrder = EngineersRepository.engineers.map { it.name }
 
         assertEquals(expectedOrder, actualOrder)
     }
 
     @Test
-    fun `byQuickStatAsc does not update the original data`() {
+    fun `byQuickStatAsc does not change the original data`() {
         val expectedOrder = listOf("Alice", "Bob", "Charlie");
-        EngineersRepository.byQuickStatAsc { it.bugs }
-        val actualOrder = EngineersRepository.engineers.map { it.name }
+        EngineersRepository.sortByQuickStatAsc { it.bugs }
+        val actualOrder = EngineersRepository.unsortedEngineers.map { it.name }
         assertEquals(expectedOrder, actualOrder)
     }
 }

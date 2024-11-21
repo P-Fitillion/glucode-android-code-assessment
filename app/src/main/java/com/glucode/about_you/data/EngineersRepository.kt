@@ -5,7 +5,15 @@ import com.glucode.about_you.engineers.models.QuickStats
 
 object EngineersRepository {
     private val _engineers = mutableListOf<Engineer>()
-    val engineers: List<Engineer> = _engineers
+    private var _quickStatSelector: ((QuickStats) -> Int)? = null
+
+    val engineers: List<Engineer>
+        get() = _quickStatSelector?.let { selector ->
+            _engineers.sortedBy { selector(it.quickStats) }
+        } ?: _engineers
+
+    val unsortedEngineers: List<Engineer> = _engineers
+
 
     fun init(initialEngineers: List<Engineer>) {
         _engineers.clear()
@@ -17,7 +25,7 @@ object EngineersRepository {
         engineer?.defaultImageName = imageName
     }
 
-    fun byQuickStatAsc(quickStatSelector: (QuickStats) -> Int): List<Engineer> {
-        return engineers.sortedBy { quickStatSelector(it.quickStats) }
+    fun sortByQuickStatAsc(quickStatSelector: (QuickStats) -> Int) {
+        _quickStatSelector = quickStatSelector
     }
 }
