@@ -9,7 +9,7 @@ import com.glucode.about_you.R
 import com.glucode.about_you.data.EngineersRepository
 import com.glucode.about_you.databinding.FragmentEngineersBinding
 import com.glucode.about_you.engineers.models.Engineer
-import com.glucode.about_you.mockdata.MockData
+import com.glucode.about_you.engineers.models.QuickStats
 
 class EngineersFragment : Fragment() {
     private lateinit var binding: FragmentEngineersBinding
@@ -31,17 +31,17 @@ class EngineersFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_years -> {
-                EngineersRepository.sortByQuickStatAsc { it.years }
-            }
-            R.id.action_coffees -> {
-                EngineersRepository.sortByQuickStatAsc { it.coffees }
-                return true
-            }
-            R.id.action_bugs -> {
-                EngineersRepository.sortByQuickStatAsc { it.bugs }
-            }
+        val sortAction: ((QuickStats) -> Int)? = when (item.itemId) {
+            R.id.action_years -> { it -> it.years }
+            R.id.action_coffees -> { it -> it.coffees }
+            R.id.action_bugs -> { it -> it.bugs }
+            else -> null
+        }
+
+        sortAction?.let {
+            EngineersRepository.sortByQuickStatAsc(it)
+            setUpEngineersList(EngineersRepository.engineers)
+            return true
         }
         setUpEngineersList(EngineersRepository.engineers)
         return super.onOptionsItemSelected(item)
