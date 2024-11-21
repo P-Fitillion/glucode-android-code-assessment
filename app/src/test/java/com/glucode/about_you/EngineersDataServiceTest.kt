@@ -6,6 +6,7 @@ import org.junit.Assert.*
 import org.junit.Before
 
 import com.glucode.about_you.data.EngineersDataService
+import com.glucode.about_you.data.SortingCriterion
 import com.glucode.about_you.engineers.models.Engineer
 import com.glucode.about_you.engineers.models.QuickStats
 
@@ -41,38 +42,44 @@ class EngineersDataServiceTest {
 
     @Test
     fun `sortByQuickStatAsc sorts by years ascending`() {
-        EngineersDataService.sortByQuickStatAsc { it.years }
+        EngineersDataService.sortByQuickStatAsc(SortingCriterion.YEARS)
 
         val expectedOrder = listOf("Bob", "Alice", "Charlie")
         val actualOrder = EngineersDataService.engineers.map { it.name }
-
         assertEquals(expectedOrder, actualOrder)
+
+        val expectedCurrentSortingCriterion = "YEARS"
+        assertEquals(expectedCurrentSortingCriterion, EngineersDataService.currentSortingCriterion)
     }
 
     @Test
     fun `sortByQuickStatAsc sorts by coffees ascending`() {
-        EngineersDataService.sortByQuickStatAsc { it.coffees }
+        EngineersDataService.sortByQuickStatAsc(SortingCriterion.COFFEES)
 
         val expectedOrder = listOf("Alice", "Charlie", "Bob")
         val actualOrder = EngineersDataService.engineers.map { it.name }
-
         assertEquals(expectedOrder, actualOrder)
+
+        val expectedCurrentSortingCriterion = "COFFEES"
+        assertEquals(expectedCurrentSortingCriterion, EngineersDataService.currentSortingCriterion)
     }
 
     @Test
     fun `sortByQuickStatAsc sorts by bugs ascending`() {
-        EngineersDataService.sortByQuickStatAsc { it.bugs }
+        EngineersDataService.sortByQuickStatAsc(SortingCriterion.BUGS)
 
         val expectedOrder = listOf("Charlie", "Bob", "Alice")
         val actualOrder = EngineersDataService.engineers.map { it.name }
-
         assertEquals(expectedOrder, actualOrder)
+
+        val expectedCurrentSortingCriterion = "BUGS"
+        assertEquals(expectedCurrentSortingCriterion, EngineersDataService.currentSortingCriterion)
     }
 
     @Test
     fun `byQuickStatAsc does not change the original data`() {
         val expectedOrder = listOf("Alice", "Bob", "Charlie");
-        EngineersDataService.sortByQuickStatAsc { it.bugs }
+        EngineersDataService.sortByQuickStatAsc(SortingCriterion.BUGS)
         val actualOrder = EngineersDataService.unsortedEngineers.map { it.name }
         assertEquals(expectedOrder, actualOrder)
     }

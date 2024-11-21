@@ -39,16 +39,26 @@
     <TextView
         android:id="@+id/role"
         style="@style/Material.Body2"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_normal"
-        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_tiny"
         android:layout_marginBottom="@dimen/margin_normal"
         android:textAppearance="?attr/textAppearanceListItem"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/profile_image"
         app:layout_constraintTop_toBottomOf="@id/name"
         tools:text="Developer role" />
+
+    <TextView
+        android:id="@+id/quick_stat"
+        style="@style/Material.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:textAppearance="?attr/textAppearanceListItem"
+        app:layout_constraintBottom_toBottomOf="@id/role"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Coffees: 9000" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
