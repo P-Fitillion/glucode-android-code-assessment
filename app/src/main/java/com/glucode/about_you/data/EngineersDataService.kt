@@ -3,7 +3,7 @@ package com.glucode.about_you.data
 import com.glucode.about_you.engineers.models.Engineer
 import com.glucode.about_you.engineers.models.QuickStats
 
-object EngineersRepository {
+object EngineersDataService {
     private val _engineers = mutableListOf<Engineer>()
     private var _quickStatSelector: ((QuickStats) -> Int)? = null
 
